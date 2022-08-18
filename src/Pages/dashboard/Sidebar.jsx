@@ -32,7 +32,7 @@ const menuList = [
     active: false,
   },
 ];
-export default function Sidebar({ activeIndex }) {
+export default function Sidebar({ activeIndex, theme }) {
   const navigate = useNavigate();
   const [sideBarOpen, setSideBarOpen] = useState(true);
   const [currentButton, setCurrentButton] = useState(menuList[activeIndex]);
@@ -43,19 +43,15 @@ export default function Sidebar({ activeIndex }) {
   return (
     <div
       id="sidebar"
-      className={`${
-        sideBarOpen ? "w-[20rem] py-4" : "w-20 px-2"
-      } flex h-full flex-col items-center pt-10`}
+      className={`${sideBarOpen ? "w-[25rem] py-4" : "w-20 px-2 py-2"}
+      ${theme.text} mt-20 flex flex-col items-center pt-6 `}
     >
       <span
         className={`${
           sideBarOpen ? "flex" : "flex flex-col-reverse justify-center gap-4"
-        } w-full items-center justify-evenly text-lg font-bold text-gray-700 xl:text-xl`}
+        } font-boldxl:text-xl w-full items-center justify-evenly text-lg font-bold`}
       >
-        <div className="flex items-center">
-          <GiRuleBook className={`${sideBarOpen ? "mr-3 " : "mr-0"} h-8 w-8`} />
-          {sideBarOpen && "Classroom"}
-        </div>
+        <div className="flex items-center">{sideBarOpen && "Classroom"}</div>
         <button
           onClick={(e) =>
             sideBarOpen ? setSideBarOpen(false) : setSideBarOpen(true)
@@ -65,12 +61,19 @@ export default function Sidebar({ activeIndex }) {
           <GrMenu className="h-6 w-6 font-bold" />
         </button>
       </span>
-      <div className="mt-8 flex w-4/5 flex-col items-center justify-center gap-3">
+      <div
+        className={`${
+          sideBarOpen ? "w-4/5" : "w-full"
+        } mt-8 flex flex-col items-center justify-center gap-3`}
+      >
         {menuList.map((menu) => (
           <button
-            className={`${sideBarOpen ? "text-sm" : ""}
-                ${menu == currentButton ? "bg-white" : "text-gray-700"}
-                 flex h-12 w-full items-center justify-start rounded-xl pl-4 font-bold text-gray-600 hover:bg-white hover:text-gray-700 active:bg-gray-100`}
+            className={`${
+              sideBarOpen ? "justify-start pl-4 text-sm" : "justify-center"
+            }
+                ${menu == currentButton ? theme.currentButton : theme.button}
+                
+                 flex h-12 w-full items-center rounded-xl font-bold`}
             onClick={(e) => {
               buttonClickHandler(menu);
             }}
