@@ -6,6 +6,7 @@ import Home from "./Pages/landing/Home.jsx";
 import Login from "./Pages/auth/Login.jsx";
 import Register from "./Pages/auth/Register.jsx";
 import Dashboard from "./Pages/dashboard/dashboard";
+import DashHome from "./Pages/dashboard/Home.jsx";
 
 const App = () => (
   <Router>
@@ -14,6 +15,7 @@ const App = () => (
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/dashboard/:page" element={<Dashboard />} />
     </Routes>
   </Router>
 );
