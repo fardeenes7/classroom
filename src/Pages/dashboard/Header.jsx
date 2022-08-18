@@ -1,7 +1,5 @@
 import { GiRuleBook } from "react-icons/gi";
-import { BiDownArrow } from "react-icons/bi";
 import { IoIosArrowDown } from "react-icons/io";
-import { useState } from "react";
 
 export default function Header({ theme, topMenuOpen, setTopMenuOpen }) {
   return (

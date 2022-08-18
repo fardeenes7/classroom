@@ -1,11 +1,8 @@
-import { useState } from "react";
-import { GiRuleBook } from "react-icons/gi";
-import { GrMenu } from "react-icons/gr";
 import { BiHomeAlt } from "react-icons/bi";
 import { SiGoogleclassroom } from "react-icons/si";
 import { IoSettingsSharp } from "react-icons/io5";
 import { RiLogoutCircleRLine } from "react-icons/ri";
-import { useLinkClickHandler, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const menuList = [
   {
     title: "Dashboard",
