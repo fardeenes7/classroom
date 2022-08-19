@@ -1,12 +1,14 @@
 import { GiRuleBook } from "react-icons/gi";
 import { IoIosArrowDown } from "react-icons/io";
+import { useState } from "react";
+import { GrMenu } from "react-icons/gr";
 
 export default function Header({ theme, topMenuOpen, setTopMenuOpen }) {
   return (
     <div
       className={`${theme.blurColor} fixed top-0 z-50 w-full items-center px-16 py-4 shadow-xl backdrop-blur-sm`}
     >
-      <div className="mx-auto flex max-w-7xl justify-between gap-4">
+      <div className="flex max-w-7xl justify-between lg:mx-auto lg:justify-between">
         <div className="flex items-center">
           <span
             className={`flex w-full flex-col-reverse
@@ -32,8 +34,8 @@ export default function Header({ theme, topMenuOpen, setTopMenuOpen }) {
             alt="Profile"
             className="h-8 w-8 rounded-full"
           />
-          Fardeen Ehsan
-          <IoIosArrowDown className="h-6 w-6 font-bold" />
+          <span className="hidden lg:block">Fardeen Ehsan</span>
+          <IoIosArrowDown className="hidden h-6 w-6 font-bold lg:block" />
         </button>
       </div>
     </div>

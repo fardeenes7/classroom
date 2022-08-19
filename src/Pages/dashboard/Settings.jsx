@@ -2,9 +2,7 @@ export default function Settings({ themes, colorTheme, setTheme }) {
   return (
     <div>
       <div className={`${colorTheme.card}`}>
-        <h1
-          className={`text-4xl font-bold`}
-        >
+        <h1 className={`text-2xl font-bold lg:text-3xl xl:text-4xl`}>
           Settings
         </h1>
       </div>

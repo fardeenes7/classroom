@@ -67,26 +67,33 @@ export default function Sidebar({ colorTheme }) {
   return (
     <div
       id="sidebar"
-      className={`${colorTheme.card} mx-4 mt-24 flex w-[35rem] flex-col items-center p-4 `}
+      className={`hidden lg:block ${colorTheme.card} ml-4 mt-24 flex w-[35rem] flex-col items-center p-2 pt-4 `}
     >
       <h2 className="mb-2 text-xl font-bold">Calender</h2>
-      <div className="flex flex-col gap-4 overflow-hidden">
+      <div className="flex flex-col gap-2 overflow-hidden">
         {calender.map((item) => (
           <div className="cursor-pointer" onClick={() => navigate(item.path)}>
             <div
-              className={`${colorTheme.blurColor} mb-0 grid w-full overflow-auto rounded-2xl p-4 shadow-xl backdrop-blur-sm`}
+              className={`${colorTheme.calender} mb-0 grid w-full overflow-auto border-b p-2 shadow-lg hover:rounded-2xl`}
             >
-              <p className="ml-2 truncate text-lg font-bold">{item.task}</p>
-              <span className="ml-2 text-sm">
+              <p className="text-md ml-2 truncate font-bold">{item.task}</p>
+              <span className="my-1 ml-2 flex items-center text-xs">
+                <div className="mr-2 h-2 w-2 rounded-full bg-white"></div>
                 {item.code} || {item.title}
               </span>
-              <span className="ml-2 text-sm font-bold">
+              <span className="ml-2 text-xs font-bold ">
                 Due on {item.time}, {item.date}
               </span>
             </div>
           </div>
         ))}
       </div>
+      <button
+        onClick={(e) => navigate("/calendar")}
+        className={`${colorTheme.button} mt-2 w-full rounded-lg py-2`}
+      >
+        View All
+      </button>
     </div>
   );
 }

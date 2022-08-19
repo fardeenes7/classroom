@@ -1,29 +1,31 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import { useState } from "react";
 
 import Classes from "./Classes.jsx";
 import Sidebar from "./Sidebar.jsx";
 import RightSidebar from "./RightSidebar.jsx";
+import BottomBar from "./BottomBar.jsx";
 
 import Header from "./Header.jsx";
 import Settings from "./Settings.jsx";
+import DashHome from "./DashHome.jsx";
 
 const menull = ["Dashboard", "Classes", "Settings", "Logout"];
 
 const topMenu = [
   {
     title: "Profile",
-    path: "/dashboard/profile",
+    path: "/profile",
   },
   {
     title: "Settings",
-    path: "/dashboard/settings",
+    path: "/settings",
   },
   {
     title: "Logout",
-    path: "/dashboard/logout",
+    path: "/logout",
   },
 ];
 
@@ -38,23 +40,27 @@ const theme = [
       "bg-slate-600 hover:bg-slate-600 active:bg-slate-700 text-white",
     font: "font-poppins",
     blurColor: "bg-white/50",
-    card: "bg-white/50 w-full overflow-auto rounded-2xl p-6 shadow-xl backdrop-blur-sm mb-4",
+    card: "bg-white/50 w-full overflow-auto rounded-2xl p-6 shadow-lg backdrop-blur-sm mb-4",
+    calender:
+      "hover:bg-slate-400/50 hover:backdrop-blur-sm hover:border-none border-black",
   },
   {
     name: "Dark",
     bgcolor: "bg-gray-700",
     text: "text-white",
-    button: "hover:bg-slate-600 active:bg-[#F76C6C] text-white",
+    button: "hover:bg-red-100 hover:text-black active:bg-[#F76C6C] text-white",
     currentButton:
       "bg-[#F76C6C] hover:bg-[#F76C6C] active:bg-[#F76C6C] text-white",
-
     font: "font-poppins",
     blurColor: "bg-slate-400/30",
     card: "bg-slate-400/30 w-full overflow-auto rounded-2xl p-6 shadow-xl backdrop-blur-sm mb-4",
+    calender:
+      "hover:bg-slate-200/50 hover:backdrop-blur-sm hover:border-none hover:text-black",
   },
 ];
 
 export default function Dashboard() {
+  const navigate = useNavigate();
   const [topMenuOpen, setTopMenuOpen] = useState(false);
 
   const [colorTheme, setColorTheme] = useState(theme[1]);
@@ -63,6 +69,10 @@ export default function Dashboard() {
     ? page[0].toUpperCase() + page.substring(1)
     : "Dashboard";
   console.log(menull.indexOf(PageTitle));
+  const topMenuHandler = (link) => {
+    navigate(link);
+    setTopMenuOpen(!topMenuOpen);
+  };
   return (
     <div
       className={`${colorTheme.bgcolor} ${colorTheme.font} ${colorTheme.text}  min-h-screen w-screen`}
@@ -74,8 +84,12 @@ export default function Dashboard() {
       />
       <div className="relative mx-auto flex w-full max-w-7xl overflow-auto">
         <Sidebar activeIndex={menull.indexOf(PageTitle)} theme={colorTheme} />
-        <div id="body" className="mt-24 w-full overflow-hidden pb-12">
-          {page === "classes" && <Classes theme={colorTheme} />}
+        <div
+          id="body"
+          className="mx-4 mt-24 w-full overflow-auto pb-12 lg:mx-0"
+        >
+          {page === "home" && <DashHome colorTheme={colorTheme} />}
+          {page === "classes" && <Classes colorTheme={colorTheme} />}
           {page === "settings" && (
             <Settings
               themes={theme}
@@ -96,18 +110,22 @@ export default function Dashboard() {
           >
             {topMenu.map((menu) => (
               <li>
-                <a
-                  href={menu.path}
-                  class="block rounded-lg py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                <div
+                  onClick={() => topMenuHandler(menu.path)}
+                  class="block cursor-pointer rounded-lg py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                 >
                   {menu.title}
-                </a>
+                </div>
               </li>
             ))}
           </ul>
         </div>
         <RightSidebar colorTheme={colorTheme} />
       </div>
+      <BottomBar
+        activeIndex={menull.indexOf(PageTitle)}
+        colorTheme={colorTheme}
+      />
     </div>
   );
 }
