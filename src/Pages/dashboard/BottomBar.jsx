@@ -42,7 +42,7 @@ const menuList = [
   },
 ];
 
-export default function BottomBar({ activeIndex, colorTheme }) {
+export default function BottomBar({ activeIndex }) {
   const navigate = useNavigate();
   const [currentButton, setCurrentButton] = useState(menuList[activeIndex]);
 
@@ -51,17 +51,11 @@ export default function BottomBar({ activeIndex, colorTheme }) {
     navigate(menu.path);
   };
   return (
-    <div
-      className={`${colorTheme.card} fixed bottom-0 flex justify-evenly p-4 lg:hidden`}
-    >
+    <div className={`fixed bottom-0 flex justify-evenly p-4 lg:hidden`}>
       {menuList.map((menu) => (
         <button
           onClick={() => buttonClickHandler(menu)}
-          className={`${
-            menu === currentButton
-              ? colorTheme.currentButton
-              : colorTheme.button
-          } h-14 w-14 rounded-lg py-2 px-4`}
+          className={` h-14 w-14 rounded-lg py-2 px-4`}
         >
           {menu.icon}
         </button>

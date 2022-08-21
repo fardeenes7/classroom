@@ -3,6 +3,8 @@ import { SiGoogleclassroom } from "react-icons/si";
 import { IoSettingsSharp } from "react-icons/io5";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
+import { TiTickOutline } from "react-icons/ti";
+
 const menuList = [
   {
     title: "Dashboard",
@@ -37,7 +39,7 @@ const calender = [
     time: "11:59",
     date: "Dec 31st",
     task: "Assignment 1",
-    path: "/dashboard/classes",
+    path: "/dash/calendar",
   },
   {
     title: "Computer and Programming Concept",
@@ -62,35 +64,39 @@ const calender = [
   },
 ];
 
-export default function Sidebar({ colorTheme }) {
+export default function Sidebar({}) {
   const navigate = useNavigate();
   return (
     <div
       id="sidebar"
-      className={`hidden lg:block ${colorTheme.card} ml-4 mt-24 flex w-[35rem] flex-col items-center p-2 pt-4 `}
+      className={`sticky top-24 mt-24 hidden w-full flex-col items-center p-2 pl-4 pt-4 lg:flex`}
     >
-      <h2 className="mb-2 text-xl font-bold">Calender</h2>
+      <h2 className="mb-2 w-full pl-8 text-xl font-bold">Calender</h2>
+
       <div className="flex flex-col gap-2 overflow-hidden">
         {calender.map((item) => (
-          <div className="cursor-pointer" onClick={() => navigate(item.path)}>
-            <div
-              className={`${colorTheme.calender} mb-0 grid w-full overflow-auto border-b p-2 shadow-lg hover:rounded-2xl`}
-            >
-              <p className="text-md ml-2 truncate font-bold">{item.task}</p>
-              <span className="my-1 ml-2 flex items-center text-xs">
-                <div className="mr-2 h-2 w-2 rounded-full bg-white"></div>
+          <div
+            className="mb-0 flex w-full cursor-pointer items-center justify-start overflow-hidden rounded-2xl border border-gray-300 bg-white py-2 px-2 hover:bg-gray-200 dark:hover:bg-gray-800 xl:py-4"
+            onClick={() => navigate(item.path)}
+          >
+            <div className="mx-2 h-6 w-6 rounded-full border border-blue-500 xl:mx-4">
+              <TiTickOutline className="h-full w-full text-blue-500" />
+            </div>
+            <div className=" pr-4">
+              <p className="ml-2 text-sm font-bold">{item.task}</p>
+              <span className="mt-1 ml-2 flex items-center overflow-hidden text-ellipsis text-xs text-gray-600">
                 {item.code} || {item.title}
               </span>
-              <span className="ml-2 text-xs font-bold ">
+              <span className="ml-2 text-xs font-bold text-gray-600">
                 Due on {item.time}, {item.date}
               </span>
-            </div>
+            </div>{" "}
           </div>
         ))}
       </div>
       <button
-        onClick={(e) => navigate("/calendar")}
-        className={`${colorTheme.button} mt-2 w-full rounded-lg py-2`}
+        onClick={(e) => navigate("/dash/calendar")}
+        className={` mt-2 w-full rounded-lg bg-blue-500 py-2 text-center text-sm font-bold text-white hover:bg-blue-600`}
       >
         View All
       </button>

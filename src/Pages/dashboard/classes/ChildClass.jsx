@@ -1,56 +1,63 @@
-import { useState } from "react";
-import { BiHomeAlt } from "react-icons/bi";
-import { SiGoogleclassroom } from "react-icons/si";
-import { IoSettingsSharp } from "react-icons/io5";
-import { RiLogoutCircleRLine } from "react-icons/ri";
-import { AiTwotoneCalendar } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
-const menuList = [
-  {
-    title: "General",
-    icon: <BiHomeAlt className="h-full w-full" />,
-    path: "#general",
-    active: true,
-  },
-  {
-    title: "Account",
-    icon: <SiGoogleclassroom className="h-full w-full" />,
-    path: "#account",
-    active: false,
-  },
+import React from "react";
 
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useParams,
+  useNavigate,
+} from "react-router-dom";
+
+import { useState } from "react";
+
+const classList = [
   {
-    title: "Logout",
-    icon: <RiLogoutCircleRLine className="h-full w-full" />,
-    path: "#logout",
-    active: false,
+    title: "Computer and Programming Concept",
+    code: "CSI 115",
+    slug: "abcdx-csi-115",
+  },
+  {
+    title: "Computer and Programming Concept",
+    code: "CSI 115",
+    slug: "abcdy-csi-115",
+  },
+  {
+    title: "Computer and Programming Concept",
+    code: "CSI 115",
+    slug: "abcdz-csi-115",
+  },
+  {
+    title: "Computer and Programming Concept",
+    code: "CSI 115",
+    slug: "abcda-csi-115",
   },
 ];
-export default function Settings({ darkMode }) {
+export default function ChildClass({}) {
   const navigate = useNavigate();
-  const [currentButton, setCurrentButton] = useState(menuList[0]);
+  const [currentButton, setCurrentButton] = useState(classList[0]);
   const buttonClickHandler = (menu) => {
     setCurrentButton(menu);
-    navigate(menu.path);
+    navigate("/dash/classes/" + menu.slug);
   };
   return (
     <div className=" grid w-full grid-cols-4 gap-4">
       <div>
         <div className="sticky top-24  pl-4">
           <h1 className="sticky pt-8 pb-4 text-4xl font-bold text-gray-700 dark:text-gray-200">
-            Settings
+            ChildClass
           </h1>
-          {menuList.map((menu, index) => (
+          {classList.map((menu, index) => (
             <button
               onClick={(e) => buttonClickHandler(menu, index)}
               className={`${
                 currentButton === menu
                   ? "text-black dark:text-white"
                   : "text-gray-600 dark:text-gray-400"
-              } flex h-10 w-full items-center justify-start rounded-lg p-2  pl-4 font-bold hover:bg-blue-100 dark:hover:text-black`}
+              } flex h-10 w-full items-center  rounded-lg p-2  pl-4 font-bold hover:bg-blue-100 dark:hover:text-black`}
             >
-              <span className={`mr-2`}>{menu.icon}</span>{" "}
-              <span className="text-md ml-2">{menu.title}</span>
+              <span className=" truncate text-xs hover:text-ellipsis">
+                {menu.code}: {menu.title}
+              </span>
             </button>
           ))}
         </div>
