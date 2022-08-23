@@ -7,7 +7,7 @@ module.exports = {
       fontFamily: {
         poppins: "'Poppins', sans-serif",
         arvo: ["Arvo", "serif"],
-        mono: ["Jetbrains Mono", "monospace"],
+        mono: ['"Jetbrains Mono"', "monospace"],
       },
     },
     colors: ({ colors }) => ({

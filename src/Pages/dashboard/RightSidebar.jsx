@@ -1,3 +1,8 @@
+/*
+MD Fardeen Ehsan Shawon
+fardeen.es7@gmail.com
+*/
+
 import { BiHomeAlt } from "react-icons/bi";
 import { SiGoogleclassroom } from "react-icons/si";
 import { IoSettingsSharp } from "react-icons/io5";
@@ -9,26 +14,26 @@ const menuList = [
   {
     title: "Dashboard",
     icon: <BiHomeAlt className="h-full w-full" />,
-    path: "/dashboard",
     active: true,
+    slug: "",
   },
   {
     title: "Classes",
     icon: <SiGoogleclassroom className="h-full w-full" />,
-    path: "/dashboard/classes",
     active: false,
+    slug: "",
   },
   {
     title: "Settings",
     icon: <IoSettingsSharp className="h-full w-full" />,
-    path: "/dashboard/settings",
     active: false,
+    slug: "",
   },
   {
     title: "Logout",
     icon: <RiLogoutCircleRLine className="h-full w-full" />,
-    path: "/dashbaord/logout",
     active: false,
+    slug: "",
   },
 ];
 
@@ -39,7 +44,7 @@ const calender = [
     time: "11:59",
     date: "Dec 31st",
     task: "Assignment 1",
-    path: "/dash/calendar",
+    path: "",
   },
   {
     title: "Computer and Programming Concept",
@@ -64,7 +69,7 @@ const calender = [
   },
 ];
 
-export default function Sidebar({}) {
+export default function RightSidebar({}) {
   const navigate = useNavigate();
   return (
     <div
@@ -76,8 +81,9 @@ export default function Sidebar({}) {
       <div className="flex flex-col gap-2 overflow-hidden">
         {calender.map((item) => (
           <div
+            key={item.slug}
             className="mb-0 flex w-full cursor-pointer items-center justify-start overflow-hidden rounded-2xl border border-gray-300 bg-white py-2 px-2 hover:bg-gray-200 dark:hover:bg-gray-800 xl:py-4"
-            onClick={() => navigate(item.path)}
+            onClick={() => navigate("/dash/calendar/" + item.slug)}
           >
             <div className="mx-2 h-6 w-6 rounded-full border border-blue-500 xl:mx-4">
               <TiTickOutline className="h-full w-full text-blue-500" />

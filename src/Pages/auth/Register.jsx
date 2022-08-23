@@ -1,3 +1,7 @@
+/*
+MD Fardeen Ehsan Shawon
+fardeen.es7@gmail.com
+*/
 import React from "react";
 import AuthTemplate from "./AuthTemplate.jsx";
 import { FcGoogle, FcReadingEbook } from "react-icons/fc";
