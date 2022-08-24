@@ -78,11 +78,11 @@ export default function RightSidebar({}) {
     >
       <h2 className="mb-2 w-full pl-8 text-xl font-bold">Calender</h2>
 
-      <div className="flex flex-col gap-2 overflow-hidden">
+      <div className="flex flex-col gap-2 overflow-visible">
         {calender.map((item) => (
           <div
             key={item.slug}
-            className="mb-0 flex w-full cursor-pointer items-center justify-start overflow-hidden rounded-2xl border border-gray-300 bg-white py-2 px-2 hover:bg-gray-200 dark:hover:bg-gray-800 xl:py-4"
+            className="mb-0 flex w-full cursor-pointer items-center justify-start overflow-hidden rounded-2xl border border-gray-300 bg-white py-2 px-2 transition-all duration-500 hover:translate-x-4 hover:bg-blue-100 dark:hover:bg-gray-800 xl:py-4"
             onClick={() => navigate("/dash/calendar/" + item.slug)}
           >
             <div className="mx-2 h-6 w-6 rounded-full border border-blue-500 xl:mx-4">
