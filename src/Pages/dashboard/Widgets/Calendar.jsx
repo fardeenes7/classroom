@@ -69,12 +69,12 @@ const calender = [
   },
 ];
 
-export default function RightSidebar({}) {
+export default function Calendar({}) {
   const navigate = useNavigate();
   return (
     <div
       id="sidebar"
-      className={`sticky top-24 mt-24 hidden w-full flex-col items-center p-2 pl-4 pt-4 lg:flex`}
+      className={`sticky top-24 hidden w-full flex-col items-center p-2 pl-4 pt-4 lg:flex`}
     >
       <h2 className="mb-2 w-full pl-8 text-xl font-bold">Calender</h2>
 

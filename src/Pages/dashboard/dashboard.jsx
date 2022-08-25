@@ -13,7 +13,6 @@ import { Dialog, Transition } from "@headlessui/react";
 
 //JSX Files
 import Classes from "./classes/Classes.jsx";
-import RightSidebar from "./RightSidebar.jsx";
 import BottomBar from "./BottomBar.jsx";
 import Header from "./Header.jsx";
 import Settings from "./Settings.jsx";
@@ -49,26 +48,12 @@ export default function Dashboard() {
       } max-w-screen min-h-screen font-poppins`}
     >
       <Header darkMode={darkMode} page={page} logoutModal={openLogoutModal} />
-      <div className="relative mx-auto grid w-full max-w-7xl grid-cols-5 lg:grid-cols-7 ">
-        <div
-          id="body"
-          className={`
-          ${
-            page === "classes" ? "col-span-7" : "col-span-5"
-          } bg-bl mt-24 w-full px-4 pb-12 lg:mx-0`}
-        >
-          {page === undefined && (
-            <DashHome darkMode={darkMode} logoutModal={openLogoutModal} />
-          )}
-          {page === "classes" && <Classes darkMode={darkMode} />}
-          {page === "settings" && <Settings darkMode={darkMode} />}
+      <div className="relative mx-auto grid w-full max-w-7xl">
+        <div id="body" className={` bg-bl mt-24 w-full px-4 pb-12 lg:mx-0`}>
+          {page === undefined && <DashHome logoutModal={openLogoutModal} />}
+          {page === "classes" && <Classes />}
+          {page === "settings" && <Settings />}
         </div>
-
-        {page !== "classes" && (
-          <div className="col-span-2">
-            <RightSidebar darkMode={darkMode} />
-          </div>
-        )}
       </div>
       <BottomBar activeIndex={menull.indexOf(PageTitle)} darkMode={darkMode} />
       <Transition appear show={isLogoutOpen} as={Fragment}>

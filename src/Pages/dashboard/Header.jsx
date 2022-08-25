@@ -73,7 +73,8 @@ export default function Header({ page, logoutModal }) {
             <BsList className="h-full w-full" />
           </button>
 
-          <span
+          <button
+            onClick={() => navigate("/dash")}
             className={`flex w-full flex-col-reverse
           items-center justify-center gap-4 text-lg font-bold text-gray-700 xl:text-xl`}
           >
@@ -81,7 +82,7 @@ export default function Header({ page, logoutModal }) {
               <GiRuleBook className={`mr-3 h-8 w-8`} />
               <span className={`text-2xl font-bold`}>Classroom</span>
             </div>
-          </span>
+          </button>
         </div>
         <div className={`hidden items-center justify-center lg:flex`}>
           {headerMenu.map((item) => (
